@@ -22,4 +22,20 @@ describe('CreateOwner', () => {
     expect(owner.phone).toBe('99-999999999');
     expect(owner.email).toBe('jhondoe@example.com');
   });
+
+  it('not be able to create a new owner with a email already used', async () => {
+    await createOwner.execute({
+      name: 'Jhon Doe',
+      phone: '99-999999999',
+      email: 'jhondoe@example.com',
+    });
+
+    await expect(
+      createOwner.execute({
+        name: 'Jhon Doe',
+        phone: '99-999999999',
+        email: 'jhondoe@example.com',
+      }),
+    ).rejects.toBeInstanceOf(AppError);
+  });
 });
