@@ -29,7 +29,7 @@ class UpdateOwnerService {
     }
 
     const checkEmailInUse = await this.ownersRepository.findByEmail(email);
-    if (email && checkEmailInUse?.id !== owner.id) {
+    if (email && checkEmailInUse && checkEmailInUse.id !== owner.id) {
       throw new AppError('Email already in use');
     }
 
