@@ -17,8 +17,8 @@ class CreateOwnerService {
   ) {}
 
   public async execute({ name, phone, email }: IRequest): Promise<Owner> {
-    const userExists = await this.ownersRepository.findByEmail(email);
-    if (userExists) {
+    const ownerExists = await this.ownersRepository.findByEmail(email);
+    if (ownerExists) {
       throw new AppError('Email already used');
     }
     const owner = await this.ownersRepository.create({ name, phone, email });
