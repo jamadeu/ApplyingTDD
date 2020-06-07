@@ -17,7 +17,10 @@ export default class CreateOwners1591527652377 implements MigrationInterface {
             name: 'name',
             type: 'varchar',
           },
-
+          {
+            name: 'phone',
+            type: 'varchar',
+          },
           {
             name: 'email',
             type: 'varchar',
