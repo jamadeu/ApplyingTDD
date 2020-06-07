@@ -31,4 +31,38 @@ describe('UpdateOwner', () => {
     expect(updated.phone).toBe('00-000000000');
     expect(updated.email).toBe('jhondoe@example.com');
   });
+
+  it('not be able to update a owner with a invalid id', async () => {
+    await expect(
+      updateOwner.execute({
+        owner_id: 'invalid id',
+        name: 'Jhon Doe',
+        phone: '99-999999999',
+        email: 'jhondoe@example.com',
+      }),
+    ).rejects.toBeInstanceOf(AppError);
+  });
+
+  it('not be able to update email owner with a email already in use', async () => {
+    await createOwner.execute({
+      name: 'Jhon Doe',
+      phone: '99-999999999',
+      email: 'jhondoe@example.com',
+    });
+
+    const owner = await createOwner.execute({
+      name: 'Jane Doe',
+      phone: '99-999999999',
+      email: 'janedoe@example.com',
+    });
+
+    await expect(
+      updateOwner.execute({
+        owner_id: owner.id,
+        name: 'Jane Doe',
+        phone: '99-999999999',
+        email: 'jhondoe@example.com',
+      }),
+    ).rejects.toBeInstanceOf(AppError);
+  });
 });
