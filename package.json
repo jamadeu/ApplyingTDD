@@ -5,6 +5,13 @@
   "repository": "git@github.com:jamadeu/ApplyingTDD.git",
   "author": "Jean Amadeu <jean.amadeu2@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "dev:server": "ts-node-dev -r tsconfig-paths/register --inspect --transpileOnly --ignore-watch node_modules src/shared/http/server.ts",
+    "start": "ts-node src/shared/infra/http/server.ts",
+    "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
+    "test": "jest"
+  },
   "dependencies": {
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
@@ -30,8 +37,5 @@
     "ts-node-dev": "^1.0.0-pre.44",
     "tsconfig-paths": "^3.9.0",
     "typescript": "^3.9.5"
-  },
-  "scripts": {
-    "test": "jest"
   }
 }
