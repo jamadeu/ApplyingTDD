@@ -14,7 +14,7 @@ describe('FindOwnerById', () => {
     findOwnerById = new FindOwnerByIdService(fakeOwnerRepository);
   });
 
-  it('be able to update a new owner', async () => {
+  it('be able to find a owner by id', async () => {
     const owner = await createOwner.execute({
       name: 'Jhon Doe',
       phone: '99-999999999',
@@ -28,5 +28,13 @@ describe('FindOwnerById', () => {
     expect(findedOwner.name).toBe('Jhon Doe');
     expect(findedOwner.phone).toBe('99-999999999');
     expect(findedOwner.email).toBe('jhondoe@example.com');
+  });
+
+  it('not be able to find a owner by id with a invalid id', async () => {
+    await expect(
+      findOwnerById.execute({
+        owner_id: 'invalid id',
+      }),
+    ).rejects.toBeInstanceOf(AppError);
   });
 });
