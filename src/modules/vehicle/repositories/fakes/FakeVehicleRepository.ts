@@ -28,6 +28,18 @@ class FakeVehicleRepository implements IVehicleRepository {
   public async findAllByOwner(owner_id: string): Promise<Vehicle[]> {
     return this.vehicles.filter(vehicle => vehicle.owner_id === owner_id);
   }
+
+  public async changeStatus(
+    vehicle: Vehicle,
+    status: string,
+  ): Promise<Vehicle> {
+    const findIndex = this.vehicles.findIndex(
+      findVehicle => findVehicle.id === vehicle.id,
+    );
+    vehicle.status = status;
+    this.vehicles[findIndex] = vehicle;
+    return vehicle;
+  }
 }
 
 export default FakeVehicleRepository;
