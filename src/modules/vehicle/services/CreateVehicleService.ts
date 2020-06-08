@@ -1,0 +1,37 @@
+import { inject, injectable } from 'tsyringe';
+import AppError from '@shared/errors/AppErrors';
+import IVehicleRepository from '@modules/vehicle/repositories/IVehicleRepository';
+import Vehicle from '@modules/vehicle/typeorm/entities/Vehicle';
+
+interface IRequest {
+  model: string;
+  brand: string;
+  owner_id: string;
+  status: 'Na fila' | 'Em revisão' | 'Revisado';
+}
+
+@injectable()
+class CreateVehicleService {
+  constructor(
+    @inject('VehicleRepository')
+    private vehiclesRepository: IVehicleRepository,
+  ) {}
+
+  public async execute({
+    model,
+    brand,
+    owner_id,
+    status = 'Na fila',
+  }: IRequest): Promise<Vehicle> {
+    const vehicle = await this.vehiclesRepository.create({
+      model,
+      brand,
+      owner_id,
+      status,
+    });
+
+    return vehicle;
+  }
+}
+
+export default CreateVehicleService;

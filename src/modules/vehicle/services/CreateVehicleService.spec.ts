@@ -36,6 +36,6 @@ describe('CreateVehicle', () => {
     expect(vehicle.model).toBe('Uno');
     expect(vehicle.brand).toBe('Fiat');
     expect(vehicle.owner_id).toBe(owner.id);
-    expect(vehicle.status).toBe('Na Fila');
+    expect(vehicle.status).toBe('Na fila');
   });
 });
