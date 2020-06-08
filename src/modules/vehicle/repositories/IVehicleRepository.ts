@@ -7,4 +7,5 @@ export default interface IVehicleRepository {
   findById(id: string): Promise<Vehicle | undefined>;
   findAllByOwner(owner_id: string): Promise<Vehicle[]>;
   changeStatus(vehicle: Vehicle, status: string): Promise<Vehicle>;
+  findByLicensePlate(license_plate: string): Promise<Vehicle | undefined>;
 }
