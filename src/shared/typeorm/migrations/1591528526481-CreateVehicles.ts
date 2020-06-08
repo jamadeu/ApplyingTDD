@@ -27,6 +27,11 @@ export class CreateVehicles1591528526481 implements MigrationInterface {
             type: 'varchar',
           },
           {
+            name: 'license_plate',
+            type: 'varchar',
+            isUnique: true,
+          },
+          {
             name: 'owner_id',
             type: 'uuid',
           },

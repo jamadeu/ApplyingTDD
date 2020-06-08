@@ -28,6 +28,7 @@ describe('CreateVehicle', () => {
     const vehicle = await createVehicle.execute({
       model: 'Uno',
       brand: 'Fiat',
+      license_plate: 'aaa-aaa',
       owner_id: owner.id,
       status: 'Na fila',
     });
@@ -35,6 +36,7 @@ describe('CreateVehicle', () => {
     expect(vehicle).toHaveProperty('id');
     expect(vehicle.model).toBe('Uno');
     expect(vehicle.brand).toBe('Fiat');
+    expect(vehicle.license_plate).toBe('aaa-aaa');
     expect(vehicle.owner_id).toBe(owner.id);
     expect(vehicle.status).toBe('Na fila');
   });

@@ -6,6 +6,7 @@ import Vehicle from '@modules/vehicle/typeorm/entities/Vehicle';
 interface IRequest {
   model: string;
   brand: string;
+  license_plate: string;
   owner_id: string;
   status: 'Na fila' | 'Em revisão' | 'Revisado';
 }
@@ -20,12 +21,14 @@ class CreateVehicleService {
   public async execute({
     model,
     brand,
+    license_plate,
     owner_id,
     status = 'Na fila',
   }: IRequest): Promise<Vehicle> {
     const vehicle = await this.vehiclesRepository.create({
       model,
       brand,
+      license_plate,
       owner_id,
       status,
     });

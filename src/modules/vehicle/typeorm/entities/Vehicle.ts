@@ -20,6 +20,9 @@ class Vehicle {
   @Column()
   brand: string;
 
+  @Column()
+  license_plate: string;
+
   @Column('uuid')
   owner_id: string;
 
