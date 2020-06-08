@@ -40,6 +40,14 @@ class FakeVehicleRepository implements IVehicleRepository {
     this.vehicles[findIndex] = vehicle;
     return vehicle;
   }
+
+  public async findByLicensePlate(
+    license_plate: string,
+  ): Promise<Vehicle | undefined> {
+    return this.vehicles.find(
+      vehicle => vehicle.license_plate === license_plate,
+    );
+  }
 }
 
 export default FakeVehicleRepository;
