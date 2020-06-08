@@ -6,4 +6,5 @@ export default interface IVehicleRepository {
   update(vehicle: Vehicle): Promise<Vehicle>;
   findById(id: string): Promise<Vehicle | undefined>;
   findAllByOwner(owner_id: string): Promise<Vehicle[]>;
+  changeStatus(vehicle: Vehicle, status: string): Promise<Vehicle>;
 }
