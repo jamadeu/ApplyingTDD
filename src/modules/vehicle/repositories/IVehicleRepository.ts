@@ -5,5 +5,5 @@ export default interface IVehicleRepository {
   create(date: ICreateVehicleDTO): Promise<Vehicle>;
   update(vehicle: Vehicle): Promise<Vehicle>;
   findById(id: string): Promise<Vehicle | undefined>;
-  findByOwner(owner_id: string): Promise<Vehicle[]>;
+  findAllByOwner(owner_id: string): Promise<Vehicle[]>;
 }
