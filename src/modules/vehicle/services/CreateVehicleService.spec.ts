@@ -40,4 +40,30 @@ describe('CreateVehicle', () => {
     expect(vehicle.owner_id).toBe(owner.id);
     expect(vehicle.status).toBe('Na fila');
   });
+
+  it('not be able to create a new vehicle with a license_plate already in use', async () => {
+    const owner = await createOwner.execute({
+      name: 'Jhon Doe',
+      phone: '99-999999999',
+      email: 'jhondoe@example.com',
+    });
+
+    await createVehicle.execute({
+      model: 'Uno',
+      brand: 'Fiat',
+      license_plate: 'aaa-aaa',
+      owner_id: owner.id,
+      status: 'Na fila',
+    });
+
+    await expect(
+      createVehicle.execute({
+        model: 'Uno',
+        brand: 'Fiat',
+        license_plate: 'aaa-aaa',
+        owner_id: owner.id,
+        status: 'Na fila',
+      }),
+    ).rejects.toBeInstanceOf(AppError);
+  });
 });

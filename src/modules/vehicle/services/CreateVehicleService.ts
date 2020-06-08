@@ -23,8 +23,14 @@ class CreateVehicleService {
     brand,
     license_plate,
     owner_id,
-    status = 'Na fila',
+    status,
   }: IRequest): Promise<Vehicle> {
+    const vehicleExists = await this.vehiclesRepository.findByLicensePlate(
+      license_plate,
+    );
+    if (vehicleExists) {
+      throw new AppError('Vehicle already exists');
+    }
     const vehicle = await this.vehiclesRepository.create({
       model,
       brand,
