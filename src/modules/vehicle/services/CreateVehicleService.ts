@@ -8,7 +8,7 @@ interface IRequest {
   brand: string;
   license_plate: string;
   owner_id: string;
-  status: 'Na fila' | 'Em revisão' | 'Revisado';
+  status: 'Na fila' | 'Em revisão' | 'revisado';
 }
 
 @injectable()
